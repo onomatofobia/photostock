@@ -72,4 +72,16 @@ public class Picture {
     public Long getNumber() {
         return number;
     }
+
+    @Override
+    public String toString() {
+        return "\nPicture{" +
+                "number=" + number +
+                ", tags=" + tags +
+                ", price=" + price +
+                ", active=" + active +
+                ", \nreservedby=" + reservedby +
+                ", owner=" + owner +
+                '}';
+    }
 }

@@ -1,5 +1,5 @@
 package pl.com.bottega.photostock.sales.ui;
-
+import pl.com.bottega.photostock.sales.infrastructure.*;
 import pl.com.bottega.photostock.sales.model.*;
 
 import java.util.HashSet;
@@ -10,12 +10,10 @@ public class ConsoleApp {
 
     public static void main(String[] args) {
 
-        Set<String> tags = new HashSet<>();
-
-
-        Picture p1 = new Picture(1L, tags, Money.valueOf(10));
-        Picture p2 = new Picture(2L, tags, Money.valueOf(5));
-        Picture p3 = new Picture(3L, tags, Money.valueOf(15));
+        PictureRepository repository = new inMemoryPictureRepository();
+        Picture p1 = repository.get(1L);
+        Picture p2 = repository.get(2L);
+        Picture p3 = repository.get(3L);
 
         Client client = new Client("Jan Nowak", new Address("ul. Północna 11", "Polska", "Lublin", "20-001"));
         client.recharge(Money.valueOf(1000));
@@ -37,6 +35,7 @@ public class ConsoleApp {
 
         Offer offer = reservation.generateOffer();
         Money cost = offer.getTotalCost();
+        System.out.println("Oferta: " + offer.toString());
 
         if (client.canAfford(cost)) {
             Purchase purchase = new Purchase(client, offer.getItems());

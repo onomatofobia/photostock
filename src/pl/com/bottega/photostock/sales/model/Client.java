@@ -41,4 +41,16 @@ public class Client {
         transaction.add(new Transaction(amount, "Recharge account"));
 
     }
+
+    @Override
+    public String toString() {
+        return "\nClient{" +
+                "name='" + name + '\'' +
+                ", \naddress=" + address +
+                ", status=" + status +
+                ", balance=" + balance +
+                ", creditLimit=" + creditLimit +
+                ", \ntransaction=" + transaction +
+                '}';
+    }
 }
