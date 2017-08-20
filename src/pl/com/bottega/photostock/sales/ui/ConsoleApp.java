@@ -35,7 +35,6 @@ public class ConsoleApp {
 
         Offer offer = reservation.generateOffer();
         Money cost = offer.getTotalCost();
-        System.out.println("Oferta: " + offer.toString());
 
         if (client.canAfford(cost)) {
             Purchase purchase = new Purchase(client, offer.getItems());

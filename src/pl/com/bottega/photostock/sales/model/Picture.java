@@ -1,6 +1,7 @@
 package pl.com.bottega.photostock.sales.model;
 
 import java.util.*;
+import pl.com.bottega.photostock.sales.model.ClientStatus.*;
 
 public class Picture {
 
@@ -23,8 +24,9 @@ public class Picture {
     }
 
     public Money calculatePrice(Client client){
-        return price;
-    }
+        return price.percent(100 - client.discountPercent());
+        }
+
 
     public boolean isAvailable(){
         return active && reservedby == null;

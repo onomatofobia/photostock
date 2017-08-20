@@ -53,4 +53,12 @@ public class Client {
                 ", \ntransaction=" + transaction +
                 '}';
     }
+
+    public ClientStatus getStatus() {
+        return status;
+    }
+
+    public int discountPercent() {
+        return status.discountPercent();
+    }
 }
