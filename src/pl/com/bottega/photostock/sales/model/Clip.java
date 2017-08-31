@@ -1,24 +1,12 @@
 package pl.com.bottega.photostock.sales.model;
 
-import java.util.HashSet;
-import java.util.Set;
 
-public class Clip {
+public class Clip extends AbstractProduct {
 
-    // Dodatkowo ma pole lenght i metodę getLenght();
-
-    public int lenght;
-    private Long number;
-    private Set<String> tags;
-    private Money price;
-    private Boolean active;
-    private Client reservedby;
-    private Client owner;
+    private int lenght;
 
     public Clip(Long number, Money price, Boolean active, int lenght) {
-        this.number = number;
-        this.price = price;
-        this.active = active;
+        super(number, price, active);
         this.lenght = lenght;
     }
 

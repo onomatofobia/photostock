@@ -6,11 +6,11 @@ import java.util.*;
 
 public class Purchase {
 
-    private Collection<Picture> items;
+    private Collection<Product> items;
     private Client buyer;
     private LocalDateTime purchaseDate = LocalDateTime.now();
 
-    public Purchase(Client buyer, Collection<Picture> items){
+    public Purchase(Client buyer, Collection<Product> items){
         this.buyer = buyer;
         this.items = new LinkedList<>(items);
     }

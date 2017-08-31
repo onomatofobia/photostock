@@ -2,14 +2,19 @@ package pl.com.bottega.photostock.sales.model;
 
 public interface Product {
 
-    public Money calculatePrice(Client client);
+    Money calculatePrice(Client client);
 
-    public boolean isAvailable();
+    boolean isAvailable();
 
-    public void reservedPer(Client client);
+    void reservedPer(Client client);
 
-    public void unreservedPer(Client client);
+    void checkReservation(Client client);
 
-    public Long getNumber();
+    void unreservedPer(Client client);
+
+    void soldPer(Client client);
+
+    Long getNumber();
+
 
 }

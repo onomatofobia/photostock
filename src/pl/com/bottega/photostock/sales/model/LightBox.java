@@ -6,23 +6,23 @@ public class LightBox {
 
     private String name;
     private Client owner;
-    private List<Picture> items = new LinkedList<>();
+    private List<Product> items = new LinkedList<>();
 
     public LightBox(Client owner, String name) {
         this.owner = owner;
         this.name = name;
     }
 
-    public void add(Picture picture) {
-        if (items.contains(picture))
+    public void add(Product product) {
+        if (items.contains(product))
             throw new IllegalStateException("Product already added");
-        if (!picture.isAvailable())
+        if (!product.isAvailable())
             throw new IllegalStateException("Product is not available.");
-        items.add(picture);
+        items.add(product);
         }
 
-    private void remove(Picture picture) {
-        if (!items.remove(picture)) {
+    private void remove(Product product) {
+        if (!items.remove(product)) {
             throw new IllegalArgumentException("Product is not part of this LightBox.");
         }
     }
@@ -31,7 +31,7 @@ public class LightBox {
         return name;
     }
 
-    public List<Picture> getItems() {
+    public List<Product> getItems() {
         return Collections.unmodifiableList(items);
     }
 

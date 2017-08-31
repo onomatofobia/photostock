@@ -5,14 +5,14 @@ import java.util.*;
 public class Offer {
 
     private Client owner;
-    private List<Picture> items;
+    private List<Product> items;
 
-    public Offer(Client owner, Collection<Picture> items){
+    public Offer(Client owner, Collection<Product> items){
         this.owner = owner;
         this.items = new LinkedList<>(items);
-        this.items.sort(new Comparator<Picture>() {
+        this.items.sort(new Comparator<Product>() {
             @Override
-            public int compare(Picture o1, Picture o2) {
+            public int compare(Product o1, Product o2) {
                 return o2.calculatePrice(Offer.this.owner).compareTo(o1.calculatePrice(Offer.this.owner));
             }
         });
@@ -29,17 +29,17 @@ public class Offer {
 
     public Money getTotalCost(){
         Money totalCost = Money.ZERO;
-        for (Picture item : items){
+        for (Product item : items){
             totalCost = totalCost.add(item.calculatePrice(owner));
         }
         return totalCost;
     }
 
-    public Collection<Picture> getItems() {
+    public Collection<Product> getItems() {
         return Collections.unmodifiableCollection(items);   // inny sposób nie pozwalający na modyfikację kolekcji items
     }
 
-    public void sortByPrice(Collection<Picture> items){
+    public void sortByPrice(Collection<Product> items){
         items = new LinkedList<>(items);
 
     }
