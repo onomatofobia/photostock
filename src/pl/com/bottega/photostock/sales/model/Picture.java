@@ -3,7 +3,7 @@ package pl.com.bottega.photostock.sales.model;
 import java.util.*;
 import pl.com.bottega.photostock.sales.model.ClientStatus.*;
 
-public class Picture {
+public class Picture extends AbstractProduct {
 
     private Long number;
     private Set<String> tags;
@@ -13,10 +13,10 @@ public class Picture {
     private Client owner;
 
     public Picture(Long number, Set<String> tags, Money price){
-        this(number, tags, price, true);
+        this(number, price, true, tags);
     }
 
-    public Picture(Long number, Set<String> tags, Money price, Boolean active) {
+    public Picture(Long number, Money price, Boolean active, Set<String> tags) {
         this.number = number;
         this.tags = new HashSet<>(tags);
         this.price = price;
