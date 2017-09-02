@@ -16,5 +16,8 @@ public interface Product {
 
     Long getNumber();
 
-
+    default void ensureAvailable(){
+        if (!isAvailable())
+            throw new ProductNotAvailableException(this);
+    }
 }
