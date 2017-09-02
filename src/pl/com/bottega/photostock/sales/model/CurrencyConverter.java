@@ -33,7 +33,7 @@ public class CurrencyConverter {
         else if (amount.currency().equals(mainCurrency))
             return amount.convert(currency, 1/getExchangeRates(currency));
         else
-            return convert(convert(amount), currency);
+            return amount.convert(currency, getExchangeRates(amount.currency()) / getExchangeRates(currency));
 
     }
 
