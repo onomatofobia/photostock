@@ -9,8 +9,10 @@ public abstract class Client {
     private ClientStatus status;
     //private Money balance;
     private List<Transaction> transaction = new LinkedList<>();
+    private String clientNumber;
 
     public Client(String name, Address address, ClientStatus status, Money balance){
+        this.clientNumber = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.status = status;
@@ -54,6 +56,10 @@ public abstract class Client {
                 '}';
     }
 
+    public String getClientNumber() {
+        return clientNumber;
+    }
+
     public ClientStatus getStatus() {
         return status;
     }
@@ -61,4 +67,6 @@ public abstract class Client {
     public int discountPercent() {
         return status.discountPercent();
     }
+
+
 }

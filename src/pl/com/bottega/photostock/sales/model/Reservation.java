@@ -2,13 +2,16 @@ package pl.com.bottega.photostock.sales.model;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.UUID;
 
 public class Reservation {
 
     private Client owner;
     private Collection<Product> items = new LinkedList<>();
+    private String number;
 
     public Reservation(Client owner){
+        this.number = UUID.randomUUID().toString();
         this.owner = owner;
     }
 
@@ -27,9 +30,11 @@ public class Reservation {
     }
 
     public Offer generateOffer() {
-
-
         return new Offer(owner, items);
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public int genItemsCount(){

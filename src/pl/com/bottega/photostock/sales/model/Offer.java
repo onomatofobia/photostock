@@ -51,4 +51,17 @@ public class Offer {
                 ", items=" + items +
                 '}';
     }
+
+    public Purchase purchase() {
+
+        Money cost = getTotalCost();
+        Purchase purchase = new Purchase(owner, items);
+        owner.charge(cost, String.format("Purchase number %s", purchase.getNumber()));
+        return purchase;
+    }
+
+    public Client getOwner(){
+        return owner;
+    }
+
 }

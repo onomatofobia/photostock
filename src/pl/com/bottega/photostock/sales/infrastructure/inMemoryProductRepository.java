@@ -38,6 +38,23 @@ public class inMemoryProductRepository implements ProductRepository {
     public void save(Product product) {
         REPO.put(product.getNumber(), product);
     }
+
+    @Override
+    public List<Picture> find(Set<String> tags, Money from, Money to) {
+
+        List<Picture> productList = new LinkedList<>();
+
+
+        for (Map.Entry<Long, Product> entry : REPO.entrySet()) {
+            if (from == null && to == null) {
+                if (REPO.get(entry)) //TODO
+            }
+
+
+            }
+        return null;
+        }
+
 }
 
 
