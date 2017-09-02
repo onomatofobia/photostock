@@ -9,13 +9,13 @@ public class PictureTest {
     @Test
     public void shouldCalculatePriceBasingOnClientStatus(){
 
-        Client clientVip = new Client("Jan Nowak",
+        Client clientVip = new VIPClient("Jan Nowak",
                 new Address("ul. Północna 11", "Polska", "Lublin", "20-001"),
                 ClientStatus.VIP,
                 Money.ZERO,
                 Money.ZERO);
 
-        Client clientStandard = new Client("Jan Nowak",
+        Client clientStandard = new VIPClient("Jan Nowak",
                 new Address("ul. Północna 11", "Polska", "Lublin", "20-001"),
                 ClientStatus.STANDARD,
                 Money.ZERO,

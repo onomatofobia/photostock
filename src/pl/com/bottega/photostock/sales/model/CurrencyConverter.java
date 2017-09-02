@@ -13,12 +13,6 @@ public class CurrencyConverter {
         this.exchangeRates = exchangeRates;
     }
 
-/*    Map<String, Double> rates = new HashMap<>();
-        rates.put("USD", 3.6020);
-        rates.put("EUR", 4.2345);
-    CurrencyConverter c = new CurrencyConverter("PLN", rates);*/
-
-
     public Money convert(Money amount){
         CurrencyConverter c = new CurrencyConverter(mainCurrency, exchangeRates);
         if (amount.currency().equals(mainCurrency))

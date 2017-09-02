@@ -10,12 +10,12 @@ public class ConsoleApp {
 
     public static void main(String[] args) {
 
-        PictureRepository repository = new inMemoryPictureRepository();
+        ProductRepository repository = new inMemoryProductRepository();
         Product p1 = repository.get(1L);
         Product p2 = repository.get(2L);
         Product p3 = repository.get(3L);
 
-        Client client = new Client("Jan Nowak", new Address("ul. Północna 11", "Polska", "Lublin", "20-001"));
+        Client client = new VIPClient("Jan Nowak", new Address("ul. Północna 11", "Polska", "Lublin", "20-001"));
         client.recharge(Money.valueOf(1000));
         Reservation reservation = new Reservation(client);
 

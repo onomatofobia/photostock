@@ -2,33 +2,29 @@ package pl.com.bottega.photostock.sales.model;
 
 import java.util.*;
 
-public class Client {
+public abstract class Client {
 
     private String name;
     private Address address;
     private ClientStatus status;
-    private Money creditLimit;
     //private Money balance;
     private List<Transaction> transaction = new LinkedList<>();
 
-    public Client(String name, Address address, ClientStatus status, Money balance, Money creditLimit){
+    public Client(String name, Address address, ClientStatus status, Money balance){
         this.name = name;
         this.address = address;
         this.status = status;
-        this.creditLimit = creditLimit;
         if (balance.gt(Money.ZERO))
             transaction.add(new Transaction(balance, "First charge."));
     }
 
     public Client(String name, Address address){
-        this(name, address, ClientStatus.STANDARD, Money.ZERO, Money.ZERO);
+        this(name, address, ClientStatus.STANDARD, Money.ZERO);
     }
 
-    public boolean canAfford(Money amount){
-        return balance().add(creditLimit).gte(amount);
-    }
+    public abstract boolean canAfford(Money amount);
 
-    private Money balance(){
+    public Money balance(){
         Money sumOfTransactions = Money.ZERO;
 
         for (Transaction t : transaction){
@@ -50,13 +46,11 @@ public class Client {
 
     @Override
     public String toString() {
-        return "\nClient{" +
+        return "Client{" +
                 "name='" + name + '\'' +
-                ", \naddress=" + address +
+                ", address=" + address +
                 ", status=" + status +
-                ", balance=" + balance() +
-                ", creditLimit=" + creditLimit +
-                ", \ntransaction=" + transaction +
+                ", transaction=" + transaction +
                 '}';
     }
 

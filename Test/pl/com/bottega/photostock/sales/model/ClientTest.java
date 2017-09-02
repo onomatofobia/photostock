@@ -6,13 +6,13 @@ import static org.junit.Assert.*;
 public class ClientTest {
 
     private Address address = new Address("ul. Północna 11", "Polska", "Lublin", "20-001");
-    private Client clientWithCredit = new Client("Jan Nowak",
+    private Client clientWithCredit = new VIPClient("Jan Nowak",
             address,
             ClientStatus.VIP,
             Money.valueOf(100),
             Money.valueOf(100));
 
-    private Client clientWithNoMoney = new Client("Jan Nowak", address);
+    private Client clientWithNoMoney = new VIPClient("Jan Nowak", address);
 
 
     @Test
