@@ -12,12 +12,12 @@ public class LightBoxPresenter {
         System.out.println("--------------------------------");
         int i = 1;
         Client client = lightBox.getOwner();
-        for (Picture picture : lightBox.getItems()) {
+        for (Product product : lightBox.getItems()) {
             System.out.println(String.format("%s %d %d | %s",
-                    picture.isAvailable() ? "" : "X",
+                    product.isAvailable() ? "" : "X",
                     i++,
-                    picture.getNumber(),
-                    picture.calculatePrice(client)));
+                    product.getNumber(),
+                    product.calculatePrice(client)));
         }
     }
 }

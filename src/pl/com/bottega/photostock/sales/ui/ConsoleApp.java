@@ -24,6 +24,11 @@ public class ConsoleApp {
         lightbox.add(p2);
         lightbox.add(p3);
 
+        Money kasa = Money.ZERO;
+        Money konwersja = kasa.valueOf(1, "USD").convert("PLN", 3.6);
+
+        System.out.println("1$ przekonwertowany na złotówki to " + konwersja);
+
         LightBoxPresenter presenter = new LightBoxPresenter();
         presenter.show(lightbox);
 

@@ -7,15 +7,14 @@ public class Client {
     private String name;
     private Address address;
     private ClientStatus status;
-    private Money balance;
     private Money creditLimit;
+    //private Money balance;
     private List<Transaction> transaction = new LinkedList<>();
 
     public Client(String name, Address address, ClientStatus status, Money balance, Money creditLimit){
         this.name = name;
         this.address = address;
         this.status = status;
-        this.balance = balance;
         this.creditLimit = creditLimit;
         if (balance.gt(Money.ZERO))
             transaction.add(new Transaction(balance, "First charge."));
@@ -26,18 +25,25 @@ public class Client {
     }
 
     public boolean canAfford(Money amount){
-        return balance.add(creditLimit).gte(amount);
+        return balance().add(creditLimit).gte(amount);
+    }
+
+    private Money balance(){
+        Money sumOfTransactions = Money.ZERO;
+
+        for (Transaction t : transaction){
+            sumOfTransactions = sumOfTransactions.add(t.getAmount());
+        }
+        return sumOfTransactions;
     }
 
     public void charge(Money amount, String reason){
         if (!canAfford(amount))
             throw new IllegalStateException("Not enough balamce.");
-        balance = balance.substract(amount);
         transaction.add(new Transaction(amount.neg(), reason));
     }
 
     public void recharge(Money amount){
-        balance = balance.add(amount);
         transaction.add(new Transaction(amount, "Recharge account"));
 
     }
@@ -48,7 +54,7 @@ public class Client {
                 "name='" + name + '\'' +
                 ", \naddress=" + address +
                 ", status=" + status +
-                ", balance=" + balance +
+                ", balance=" + balance() +
                 ", creditLimit=" + creditLimit +
                 ", \ntransaction=" + transaction +
                 '}';

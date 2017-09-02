@@ -59,31 +59,42 @@ public abstract class AbstractProduct implements Product {
         return number;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Picture picture = (Picture) o;
+        AbstractProduct that = (AbstractProduct) o;
 
-        return number.equals(picture.number);
+        if (!number.equals(that.number)) return false;
+        if (!tags.equals(that.tags)) return false;
+        if (!price.equals(that.price)) return false;
+        if (!active.equals(that.active)) return false;
+        if (!reservedby.equals(that.reservedby)) return false;
+        return owner.equals(that.owner);
     }
 
     @Override
     public int hashCode() {
-        return number.hashCode();
+        int result = number.hashCode();
+        result = 31 * result + tags.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + active.hashCode();
+        result = 31 * result + reservedby.hashCode();
+        result = 31 * result + owner.hashCode();
+        return result;
     }
 
     @Override
     public String toString() {
-        return "\nPicture{" +
+        return "AbstractProduct{" +
                 "number=" + number +
                 ", tags=" + tags +
                 ", price=" + price +
                 ", active=" + active +
-                ", \nreservedby=" + reservedby +
+                ", reservedby=" + reservedby +
                 ", owner=" + owner +
                 '}';
     }
-
 }
