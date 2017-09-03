@@ -40,19 +40,35 @@ public class inMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public List<Picture> find(Set<String> tags, Money from, Money to) {
+    public List<Product> find(Client client, Set<String> tags, Money from, Money to) {
 
-        List<Picture> productList = new LinkedList<>();
+        List<Product> results = new LinkedList<>();
 
+        for(Product product : REPO.values()) {
+            if(product instanceof Picture) {
+                Picture picture = (Picture) product;
 
-        for (Map.Entry<Long, Product> entry : REPO.entrySet()) {
-            if (from == null && to == null) {
-                if (REPO.get(entry)) //TODO
+                if (matchesCriteria(picture, client, tags, from, to))
+                    results.add(picture);
             }
-
-
             }
-        return null;
+        return results;
+        }
+
+    private boolean matchesCriteria(Picture picture, Client client, Set<String> tags, Money from, Money to){
+
+            if(tags != null && !picture.hasTags(tags))
+                return false;
+
+            Money price = picture.calculatePrice(client);
+
+            if(from != null && from.gt(price))
+                return false;
+
+            if(to != null && to.lt(price))
+                return false;
+
+            return true;
         }
 
 }

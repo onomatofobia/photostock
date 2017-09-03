@@ -1,5 +1,7 @@
 package pl.com.bottega.photostock.sales.model;
 
+import java.util.Set;
+
 public interface Product {
 
     Money calculatePrice(Client client);

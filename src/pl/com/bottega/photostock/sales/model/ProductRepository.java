@@ -12,5 +12,5 @@ public interface ProductRepository {
     //zapis nowego lub aktualizacja istniejącego obiektu
     void save(Product product);
 
-    List<Picture> find(Client client, Set<String> tags, Money from, Money to);
+    List<Product> find(Client client, Set<String> tags, Money from, Money to);
 }

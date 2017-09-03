@@ -6,22 +6,24 @@ public class LightBox {
 
     private String name;
     private Client owner;
-    private List<Product> items = new LinkedList<>();
+    private String number;
+    private List<Picture> items = new LinkedList<>();
 
     public LightBox(Client owner, String name) {
+        this.number = UUID.randomUUID().toString();
         this.owner = owner;
         this.name = name;
     }
 
-    public void add(Product product) {
-        if (items.contains(product))
+    public void add(Picture picture) {
+        if (items.contains(picture))
             throw new IllegalStateException("Product already added");
-        product.ensureAvailable();
-        items.add(product);
+        picture.ensureAvailable();
+        items.add(picture);
         }
 
-    private void remove(Product product) {
-        if (!items.remove(product)) {
+    private void remove(Picture picture) {
+        if (!items.remove(picture)) {
             throw new IllegalArgumentException("Product is not part of this LightBox.");
         }
     }
@@ -30,11 +32,26 @@ public class LightBox {
         return name;
     }
 
-    public List<Product> getItems() {
+    public List<Picture> getItems() {
         return Collections.unmodifiableList(items);
     }
 
     public Client getOwner() {
         return owner;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public List<Picture> getPictures(Set<Long> pictureNumbers){
+
+        List<Picture> results = new LinkedList<>();
+
+        for(Picture pic : items) {
+            if (pictureNumbers.contains(pic.getNumber()))
+                results.add(pic);
+        }
+        return results;
     }
 }
