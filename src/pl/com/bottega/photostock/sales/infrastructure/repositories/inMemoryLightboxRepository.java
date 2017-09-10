@@ -1,8 +1,7 @@
-package pl.com.bottega.photostock.sales.infrastructure;
+package pl.com.bottega.photostock.sales.infrastructure.repositories;
 
-import pl.com.bottega.photostock.sales.model.Client;
 import pl.com.bottega.photostock.sales.model.LightBox;
-import pl.com.bottega.photostock.sales.model.LightboxRepository;
+import pl.com.bottega.photostock.sales.model.repositories.LightboxRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,5 +20,9 @@ public class inMemoryLightboxRepository implements LightboxRepository {
     @Override
     public void save(LightBox lightBox) {
         REPO.put(lightBox.getNumber(), lightBox);
+    }
+
+    public  Map<String, LightBox> getREPO() {
+        return REPO;
     }
 }

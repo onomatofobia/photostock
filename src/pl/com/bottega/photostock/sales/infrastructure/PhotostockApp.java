@@ -6,6 +6,7 @@ import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryClien
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryLightboxRepository;
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryProductRepository;
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryReservationRepository;
+import pl.com.bottega.photostock.sales.model.LightBox;
 import pl.com.bottega.photostock.sales.model.repositories.ClientRepository;
 import pl.com.bottega.photostock.sales.model.repositories.LightboxRepository;
 import pl.com.bottega.photostock.sales.model.repositories.ProductRepository;
@@ -40,9 +41,12 @@ public class PhotostockApp {
         SearchScreen searchScreen = new SearchScreen(scanner, authenticationManager,  productCatalog);
         MainScreen mainScreen = new MainScreen(scanner, lightBoxManagementScreen, searchScreen);
         AuthenticationScreen authenticationScreen = new AuthenticationScreen(scanner, authenticationManager);
+        LightBoxScreen lightBoxScreen = new LightBoxScreen(scanner);
+
 
         authenticationScreen.show();
         mainScreen.show();
+        lightBoxScreen.show();
 
     }
 }

@@ -1,8 +1,8 @@
-package pl.com.bottega.photostock.sales.infrastructure;
+package pl.com.bottega.photostock.sales.infrastructure.repositories;
 
 import pl.com.bottega.photostock.sales.model.Money;
 import pl.com.bottega.photostock.sales.model.Picture;
-import pl.com.bottega.photostock.sales.model.PictureRepository;
+import pl.com.bottega.photostock.sales.model.repositories.PictureRepository;
 
 import java.util.*;
 

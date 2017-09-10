@@ -68,5 +68,12 @@ public abstract class Client {
         return status.discountPercent();
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public boolean hasLogin(String login){
+
+        return name.equals(login);
+    }
 }

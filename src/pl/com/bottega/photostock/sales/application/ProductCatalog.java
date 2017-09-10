@@ -1,6 +1,7 @@
 package pl.com.bottega.photostock.sales.application;
 
 import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.repositories.ProductRepository;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ public class ProductCatalog {
         this.repository = repository;
     }
 
-    public List<Picture> find(Client client, Set<String> tags, Money from, Money to){
+    public List<Product> find(Client client, Set<String> tags, Money from, Money to){
 
         return repository.find(client, tags, from, to);
     }

@@ -1,6 +1,7 @@
 package pl.com.bottega.photostock.sales.application;
 
 import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.repositories.*;
 
 import java.util.List;
 import java.util.Set;
@@ -11,18 +12,15 @@ public class LightboxManagement {
     private ClientRepository clientRepository;
     private ProductRepository productRepository;
     private ReservationRepository reservationRepository;
-    private PictureRepository pictureRepository;
 
     public LightboxManagement(LightboxRepository lightboxRepository,
                               ClientRepository clientRepository,
                               ProductRepository productRepository,
-                              ReservationRepository reservationRepository,
-                              PictureRepository pictureRepository){
+                              ReservationRepository reservationRepository){
         this.lightboxRepository = lightboxRepository;
         this.clientRepository = clientRepository;
         this.productRepository = productRepository;
         this.reservationRepository = reservationRepository;
-        this.pictureRepository = pictureRepository;
     }
 
 
@@ -67,4 +65,17 @@ public class LightboxManagement {
         }
         reservationRepository.save(reservation);
     }
+
+    public List<LightBox> getLightBoxes(String clientNumber) {
+        Client client = clientRepository.get(clientNumber);
+        List<LightBox> lightBoxes = null;
+        List<LightBox> lightBoxesFromRepo = (List) lightboxRepository.getREPO().values();
+
+        for (LightBox lightBox : lightBoxesFromRepo) {
+            if (lightBox.getOwner().equals(client))
+                lightBoxes.add(lightBox);
+        }
+        return lightBoxes;
+    }
 }
+

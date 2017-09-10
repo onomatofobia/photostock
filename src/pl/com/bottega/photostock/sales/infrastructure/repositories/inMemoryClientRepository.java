@@ -1,6 +1,7 @@
-package pl.com.bottega.photostock.sales.infrastructure;
+package pl.com.bottega.photostock.sales.infrastructure.repositories;
 
 import pl.com.bottega.photostock.sales.model.*;
+import pl.com.bottega.photostock.sales.model.repositories.ClientRepository;
 
 import java.util.*;
 
@@ -29,5 +30,11 @@ public class inMemoryClientRepository implements ClientRepository {
         REPO.put(client.getClientNumber(), client);
     }
 
-
+    @Override
+    public Optional<Client> getByLogin(String login) {
+        for(Client client : REPO.values())
+            if(client.hasLogin(login))
+                return Optional.of(client);
+        return Optional.empty();
+    }
 }
