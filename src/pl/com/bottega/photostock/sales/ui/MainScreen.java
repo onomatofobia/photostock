@@ -15,7 +15,7 @@ public class MainScreen {
     }
 
     public void show() {
-        while (true) {
+        loop: while (true) {
             showMenu();
             int decission = scanner.nextInt();
 
@@ -25,7 +25,7 @@ public class MainScreen {
                     break;
                 case 2:
                     lightBoxManagementScreen.show();
-                    break;
+                    break loop;
                 case 3:
                     return;
                 default:

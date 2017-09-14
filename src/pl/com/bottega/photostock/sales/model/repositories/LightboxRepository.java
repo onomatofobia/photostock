@@ -2,6 +2,7 @@ package pl.com.bottega.photostock.sales.model.repositories;
 
 import pl.com.bottega.photostock.sales.model.LightBox;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -11,5 +12,5 @@ public interface LightboxRepository {
 
     void save(LightBox lightBox);
 
-    public Map<String, LightBox> getREPO();
+    List<LightBox> getClientLightBoxes(String clientNumber);
 }

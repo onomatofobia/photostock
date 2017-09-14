@@ -54,6 +54,7 @@ public class SearchScreen {
         }
     }
 
+
     public Set<String> getTags() {
         String line = scanner.nextLine();
         String[] tagsArray = line.split(" ");

@@ -2,8 +2,8 @@ package pl.com.bottega.photostock.sales.ui;
 
 import pl.com.bottega.photostock.sales.model.*;
 
-public class LightBoxPresenter {
 
+public class LightBoxPresenter {
 
 
     public void show(LightBox lightBox) {
@@ -20,4 +20,6 @@ public class LightBoxPresenter {
                     product.calculatePrice(client)));
         }
     }
+
+
 }

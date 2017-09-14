@@ -6,18 +6,18 @@ import pl.com.bottega.photostock.sales.model.repositories.*;
 import java.util.List;
 import java.util.Set;
 
-public class LightboxManagement {
+public class LightBoxManagement {
 
-    private LightboxRepository lightboxRepository;
+    private LightboxRepository lightBoxRepository;
     private ClientRepository clientRepository;
     private ProductRepository productRepository;
     private ReservationRepository reservationRepository;
 
-    public LightboxManagement(LightboxRepository lightboxRepository,
+    public LightBoxManagement(LightboxRepository lightboxRepository,
                               ClientRepository clientRepository,
                               ProductRepository productRepository,
                               ReservationRepository reservationRepository){
-        this.lightboxRepository = lightboxRepository;
+        this.lightBoxRepository = lightboxRepository;
         this.clientRepository = clientRepository;
         this.productRepository = productRepository;
         this.reservationRepository = reservationRepository;
@@ -30,7 +30,7 @@ public class LightboxManagement {
 
         LightBox lightBox = new LightBox(client, lightBoxName);
 
-        lightboxRepository.save(lightBox);
+        lightBoxRepository.save(lightBox);
 
         return lightBox.getNumber();
     }
@@ -41,16 +41,16 @@ public class LightboxManagement {
         if (!(product instanceof Picture)) {
             throw new IllegalArgumentException("This is not a Picture number");
         }
-        LightBox lightBox = lightboxRepository.get(lightBoxNumber);
+        LightBox lightBox = lightBoxRepository.get(lightBoxNumber);
         Picture picture = (Picture) product;
         lightBox.add(picture);
-        lightboxRepository.save(lightBox);
+        lightBoxRepository.save(lightBox);
         productRepository.save(product);
     }
 
 
     public void reserve(String lightBoxNumber, Set<Long> picturesNumbers, String reservationNumber){
-        LightBox lightBox = lightboxRepository.get(lightBoxNumber);
+        LightBox lightBox = lightBoxRepository.get(lightBoxNumber);
         Reservation reservation = reservationRepository.get(reservationNumber);
         List<Picture> pictures = lightBox.getPictures(picturesNumbers);
 
@@ -67,15 +67,7 @@ public class LightboxManagement {
     }
 
     public List<LightBox> getLightBoxes(String clientNumber) {
-        Client client = clientRepository.get(clientNumber);
-        List<LightBox> lightBoxes = null;
-        List<LightBox> lightBoxesFromRepo = (List) lightboxRepository.getREPO().values();
-
-        for (LightBox lightBox : lightBoxesFromRepo) {
-            if (lightBox.getOwner().equals(client))
-                lightBoxes.add(lightBox);
-        }
-        return lightBoxes;
+        return lightBoxRepository.getClientLightBoxes(clientNumber);
     }
 }
 

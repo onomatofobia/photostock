@@ -1,5 +1,6 @@
 package pl.com.bottega.photostock.sales.model;
 
+import java.awt.datatransfer.DataFlavor;
 import java.util.*;
 
 public abstract class Client {
@@ -76,4 +77,5 @@ public abstract class Client {
 
         return name.equals(login);
     }
+
 }

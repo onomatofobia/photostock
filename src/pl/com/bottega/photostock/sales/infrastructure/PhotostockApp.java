@@ -1,12 +1,11 @@
 package pl.com.bottega.photostock.sales.infrastructure;
 
-import pl.com.bottega.photostock.sales.application.LightboxManagement;
+import pl.com.bottega.photostock.sales.application.LightBoxManagement;
 import pl.com.bottega.photostock.sales.application.ProductCatalog;
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryClientRepository;
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryLightboxRepository;
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryProductRepository;
 import pl.com.bottega.photostock.sales.infrastructure.repositories.inMemoryReservationRepository;
-import pl.com.bottega.photostock.sales.model.LightBox;
 import pl.com.bottega.photostock.sales.model.repositories.ClientRepository;
 import pl.com.bottega.photostock.sales.model.repositories.LightboxRepository;
 import pl.com.bottega.photostock.sales.model.repositories.ProductRepository;
@@ -33,20 +32,23 @@ public class PhotostockApp {
 
         AuthenticationManager authenticationManager = new AuthenticationManager(clientRepository);
 
-        LightboxManagement lightboxManagement = new LightboxManagement(lightboxRepository,
+        LightBoxManagement lightBoxManagement = new LightBoxManagement(lightboxRepository,
                 clientRepository, productRepository, reservationRepository);
-        LightBoxManagementScreen lightBoxManagementScreen = new LightBoxManagementScreen(scanner, lightboxManagement,
-                authenticationManager);
+
         ProductCatalog productCatalog = new ProductCatalog(productRepository);
+        AddLightBox addLightBox = new AddLightBox(scanner, lightBoxManagement, authenticationManager);
+        LightBoxPresenter lightBoxPresenter = new LightBoxPresenter();
+        AddProductScreen addProductScreen = new AddProductScreen(lightBoxManagement, scanner);
+
+        LightBoxManagementScreen lightBoxManagementScreen = new LightBoxManagementScreen(scanner, lightBoxManagement,
+                authenticationManager);
+
         SearchScreen searchScreen = new SearchScreen(scanner, authenticationManager,  productCatalog);
         MainScreen mainScreen = new MainScreen(scanner, lightBoxManagementScreen, searchScreen);
         AuthenticationScreen authenticationScreen = new AuthenticationScreen(scanner, authenticationManager);
-        LightBoxScreen lightBoxScreen = new LightBoxScreen(scanner);
-
 
         authenticationScreen.show();
         mainScreen.show();
-        lightBoxScreen.show();
 
     }
 }
