@@ -9,7 +9,8 @@ public class AddLightBox {
     private LightBoxManagement lightBoxManagement;
     private AuthenticationManager authenticationManager;
 
-    public AddLightBox(Scanner scanner, LightBoxManagement lightBoxManagement, AuthenticationManager authenticationManager){
+    public AddLightBox(Scanner scanner, LightBoxManagement lightBoxManagement,
+                       AuthenticationManager authenticationManager){
         this.scanner = scanner;
         this.lightBoxManagement = lightBoxManagement;
         this.authenticationManager = authenticationManager;
@@ -22,5 +23,7 @@ public class AddLightBox {
         String clientNumber = authenticationManager.getClientNumber();
 
         lightBoxManagement.create(clientNumber, name);
+
+        System.out.println(String.format("LightBox %s został dodany.", name));
     }
 }

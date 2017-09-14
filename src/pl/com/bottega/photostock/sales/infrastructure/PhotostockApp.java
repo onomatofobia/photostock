@@ -40,8 +40,11 @@ public class PhotostockApp {
         LightBoxPresenter lightBoxPresenter = new LightBoxPresenter();
         AddProductScreen addProductScreen = new AddProductScreen(lightBoxManagement, scanner);
 
+
         LightBoxManagementScreen lightBoxManagementScreen = new LightBoxManagementScreen(scanner, lightBoxManagement,
                 authenticationManager);
+        LightBoxPresenterScreen lightBoxPresenterScreen = new LightBoxPresenterScreen(scanner, lightBoxPresenter,
+                lightBoxManagementScreen, addProductScreen, lightBoxManagement, authenticationManager);
 
         SearchScreen searchScreen = new SearchScreen(scanner, authenticationManager,  productCatalog);
         MainScreen mainScreen = new MainScreen(scanner, lightBoxManagementScreen, searchScreen);

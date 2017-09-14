@@ -17,7 +17,6 @@ public class LightBoxPresenterScreen {
     private AuthenticationManager authenticationManager;
 
     public LightBoxPresenterScreen(Scanner scanner, LightBoxPresenter lightBoxPresenter,
-                                   LightBoxManagement lightBoxManagement,
                                    LightBoxManagementScreen lightBoxManagementScreen,
                                    AddProductScreen addProductScreen, LightBoxManagement lightboxManagement,
                                    AuthenticationManager authenticationManager) {

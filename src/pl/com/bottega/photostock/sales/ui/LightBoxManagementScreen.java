@@ -34,7 +34,6 @@ public class LightBoxManagementScreen {
             for (LightBox lightBox : lightBoxes)
                 System.out.println(String.format("%d %s,", index++, lightBox.getName()));
 
-            amount = index;
             }
 
             menuChoice();
