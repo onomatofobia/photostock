@@ -18,6 +18,7 @@ public class MainScreen {
         loop: while (true) {
             showMenu();
             int decission = scanner.nextInt();
+            scanner.nextLine();
 
             switch (decission) {
                 case 1:

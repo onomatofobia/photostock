@@ -11,18 +11,21 @@ public class LightBoxManagementScreen {
     private Scanner scanner;
     private LightBoxManagement lightBoxManagement;
     private AuthenticationManager authenticationManager;
-    private AddLightBox addLightBox;
+    private AddProductScreen addProductScreen;
+    private LightBoxPresenter lightBoxPresenter;
     private MainScreen mainScreen;
-    private LightBoxPresenterScreen lightBoxPresenterScreen;
     private List<LightBox> lightBoxes;
-    private int amount;
+    private LightBox lightBox;
 
     public LightBoxManagementScreen(Scanner scanner, LightBoxManagement lightBoxManagement,
-                                    AuthenticationManager authenticationManager){
+                                    AuthenticationManager authenticationManager,
+                                    AddProductScreen addProductScreen){
         this.scanner = scanner;
         this.authenticationManager = authenticationManager;
         this.lightBoxManagement = lightBoxManagement;
+        this.addProductScreen = addProductScreen;
     }
+
 
     public void show() {
         System.out.println("Twoje LighBoxy:");
@@ -44,13 +47,14 @@ public class LightBoxManagementScreen {
         loop:while(true){
         showMenu();
         int decission=scanner.nextInt();
+        scanner.nextLine();
 
         switch(decission){
             case 1:
-            addLightBox.show();
+            addLightBox();
             break loop;
             case 2:
-            lightBoxPresenterScreen.show();
+            lightBoxDisplay();
             break;
             case 3:
             mainScreen.show();
@@ -60,6 +64,65 @@ public class LightBoxManagementScreen {
     }
 }
 
+    private void lightBoxDisplay() {
+        lightBoxes = lightBoxManagement.getLightBoxes(authenticationManager.getClientNumber());
+
+        if (lightBoxes.isEmpty()) {
+            System.out.println("Nie masz żadnych LightBox'ów. Dodaj Lightbox.");
+            show();
+        }
+
+        System.out.println("Podaj index Lightbox'a: ");
+        int index = scanner.nextInt();
+        scanner.nextLine();
+        lightBox = lightBoxes.get(index - 1);
+        lightBoxPresenter.show(lightBox);
+
+        showLightBoxMenu();
+        lightBoxMenuChoice();
+    }
+
+    private void lightBoxMenuChoice(){
+        loop:
+        while (true) {
+            int decission = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (decission) {
+                case 1:
+                    addProductScreen.show(lightBox);
+                    break;
+                case 2:
+                    show();
+                    break;
+                default:
+                    System.out.println("Sorry, ale nie rozumiem.");
+            }
+        }
+    }
+
+    private void addLightBox(){
+
+        System.out.println("Podaj nazwę nowego LighBox'a: ");
+
+        String name = scanner.nextLine();
+        String clientNumber = authenticationManager.getClientNumber();
+
+        lightBoxManagement.create(clientNumber, name);
+
+        lightBoxes = lightBoxManagement.getLightBoxes(clientNumber);
+
+        System.out.println(String.format("LightBox %s został dodany.", name));
+        show();
+    }
+
+
+    private void showLightBoxMenu() {
+        System.out.println("Co chcesz zrobić?");
+        System.out.println("1. Dodaj produkt do LightBox'a");
+        System.out.println("2. Wróć do poprzedniego menu.");
+        System.out.print("Twój wybór: ");
+    }
 
     private void showMenu() {
         System.out.println("Co chcesz zrobić?");

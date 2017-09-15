@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class LightBoxPresenterScreen {
 
 
-    private Scanner scanner;
+   /* private Scanner scanner;
     private LightBoxPresenter lightBoxPresenter;
     private LightBoxManagementScreen lightBoxManagementScreen;
     private AddProductScreen addProductScreen;
@@ -68,5 +68,5 @@ public class LightBoxPresenterScreen {
         System.out.println("1. Dodaj produkt do LightBox'a");
         System.out.println("2. Wróć do poprzedniego menu.");
         System.out.print("Twój wybór: ");
-    }
+    }*/
 }

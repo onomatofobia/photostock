@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class AddLightBox {
-    private Scanner scanner;
+/*    private Scanner scanner;
     private LightBoxManagement lightBoxManagement;
     private AuthenticationManager authenticationManager;
 
@@ -17,13 +17,13 @@ public class AddLightBox {
     }
 
     public void show(){
-        System.out.println("Podaj nazwę nowego LighBox'a: ");
+        *//*System.out.println("Podaj nazwę nowego LighBox'a: ");
 
         String name = scanner.nextLine();
         String clientNumber = authenticationManager.getClientNumber();
 
         lightBoxManagement.create(clientNumber, name);
 
-        System.out.println(String.format("LightBox %s został dodany.", name));
-    }
+        System.out.println(String.format("LightBox %s został dodany.", name));*//*
+    }*/
 }
