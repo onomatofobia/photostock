@@ -29,6 +29,7 @@ public class Offer {
 
     public Money getTotalCost(){
         Money totalCost = Money.ZERO;
+
         for (Product item : items){
             totalCost = totalCost.add(item.calculatePrice(owner));
         }

@@ -12,6 +12,7 @@ public abstract class Client {
     private List<Transaction> transaction = new LinkedList<>();
     private String clientNumber;
 
+
     public Client(String name, Address address, ClientStatus status, Money balance){
         this.clientNumber = UUID.randomUUID().toString();
         this.name = name;
@@ -49,6 +50,7 @@ public abstract class Client {
 
     @Override
     public String toString() {
+
         return "Client{" +
                 "name='" + name + '\'' +
                 ", address=" + address +

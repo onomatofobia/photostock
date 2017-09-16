@@ -1,5 +1,7 @@
 package pl.com.bottega.photostock.sales.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainScreen {
@@ -7,6 +9,9 @@ public class MainScreen {
     private LightBoxManagementScreen lightBoxManagementScreen;
     private SearchScreen searchScreen;
     private Scanner scanner;
+    private Menu menu;
+    private List<MenuItem> items = new ArrayList<>();
+    private String title;
 
     public MainScreen(Scanner scanner, LightBoxManagementScreen lightBoxManagementScreen, SearchScreen searchScreen){
         this.scanner = scanner;
@@ -15,31 +20,11 @@ public class MainScreen {
     }
 
     public void show() {
-        loop: while (true) {
-            showMenu();
-            int decission = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (decission) {
-                case 1:
-                    searchScreen.show();
-                    break;
-                case 2:
-                    lightBoxManagementScreen.show();
-                    break loop;
-                case 3:
-                    return;
-                default:
-                    System.out.println("Sorry, ale nie rozumiem.");
-            }
-        }
-    }
-
-    private void showMenu() {
-        System.out.println("!!! Witamy w PHOTOSTOCK !!!");
-        System.out.println("1. Wyszukaj produkty.");
-        System.out.println("2. LightBox'y");
-        System.out.println("3. Zakończ.");
-        System.out.print("Co chcesz zrobić? ");
+        menu = new Menu(scanner);
+        menu.setTitleLabel("WITAJ W PHOTOSTOCK!");
+        menu.addItem("Wyszukaj produkt", () -> searchScreen.show());
+        menu.addItem("LightbBoxy", () -> lightBoxManagementScreen.show());
+        menu.setLastItemLabel("Zakończ");
+        menu.show();
     }
 }
