@@ -1,50 +1,53 @@
 package pl.com.bottega.photostock.sales.model;
 
-import java.util.Set;
-
 public abstract class AbstractProduct implements Product {
-
-    private Long number;
-    private Set<String> tags;
-    private Money price;
-    private Boolean active;
-    private Client reservedby;
+    protected Long number;
+    protected Money price;
+    protected Boolean active;
+    private Client reservedBy;
     private Client owner;
 
-    public AbstractProduct(Long number, Money price, Boolean active) {
+    public AbstractProduct(Money price, Boolean active, Long number) {
+        this.price = price;
+        this.active = active;
+        this.number = number;
+    }
+
+    public AbstractProduct(Long number, Money price, Client reservedBy, Client owner, boolean active) {
         this.number = number;
         this.price = price;
+        this.reservedBy = reservedBy;
+        this.owner = owner;
         this.active = active;
     }
 
     @Override
-    public Money calculatePrice(Client client){
+    public Money calculatePrice(Client client) {
         return price.percent(100 - client.discountPercent());
     }
 
     @Override
-    public boolean isAvailable(){
-        return active && reservedby == null;
+    public boolean isAvailable() {
+        return active && reservedBy == null;
     }
 
     @Override
-    public void reservedPer(Client client){
+    public void reservedPer(Client client) {
         ensureAvailable();
-        reservedby = client;
+        reservedBy = client;
     }
 
     @Override
-    public void checkReservation(Client client){
-        if (reservedby == null || !reservedby.equals(client))
-            throw new IllegalStateException(String.format("Product is not reserved by %s", client));
-    }
-
-    @Override
-    public void unreservedPer(Client client){
-        if (owner != null)
+    public void unreservedPer(Client client) {
+        if(owner != null)
             throw new IllegalStateException("Product is already purchased");
         checkReservation(client);
-        reservedby = null;
+        reservedBy = null;
+    }
+
+    public void checkReservation(Client client) {
+        if (reservedBy == null || !reservedBy.equals(client))
+            throw new IllegalStateException(String.format("Product is not reserved by %s", client));
     }
 
     @Override
@@ -54,46 +57,38 @@ public abstract class AbstractProduct implements Product {
     }
 
     @Override
-    public Long getNumber(){
-        return number;
-    }
-
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AbstractProduct that = (AbstractProduct) o;
+        Picture picture = (Picture) o;
 
-        if (!number.equals(that.number)) return false;
-        if (!tags.equals(that.tags)) return false;
-        if (!price.equals(that.price)) return false;
-        if (!active.equals(that.active)) return false;
-        if (!reservedby.equals(that.reservedby)) return false;
-        return owner.equals(that.owner);
+        return number.equals(picture.number);
     }
 
     @Override
     public int hashCode() {
-        int result = number.hashCode();
-        result = 31 * result + tags.hashCode();
-        result = 31 * result + price.hashCode();
-        result = 31 * result + active.hashCode();
-        result = 31 * result + reservedby.hashCode();
-        result = 31 * result + owner.hashCode();
-        return result;
+        return number.hashCode();
     }
 
     @Override
-    public String toString() {
-        return "AbstractProduct{" +
-                "number=" + number +
-                ", tags=" + tags +
-                ", price=" + price +
-                ", active=" + active +
-                ", reservedby=" + reservedby +
-                ", owner=" + owner +
-                '}';
+    public Long getNumber() {
+        return number;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public String getReservedBy() {
+        return reservedBy.getClientNumber();
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public String getOwner() {
+        return owner.getClientNumber();
     }
 }

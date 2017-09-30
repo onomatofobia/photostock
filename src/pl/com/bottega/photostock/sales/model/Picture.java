@@ -8,15 +8,18 @@ public class Picture extends AbstractProduct {
 
 
 
-    public Picture(Long number, Money price, Boolean active, Set<String> tags) {
-        super(number, price, active);
+    public Picture(Long number, Set<String> tags, Money price) {
+        this(number, tags, price, true);
+    }
+
+    public Picture(Long number, Set<String> tags, Money price, Boolean active) {
+        super(price, active, number);
         this.tags = new HashSet<>(tags);
     }
 
-    public Picture(Long number, Money price, Set<String> tags){
-
-        this(number, price, true, tags);
-
+    public Picture(Long number, String[] tags, Money price, Client reservedBy, Client owner, Boolean active) {
+        super(number, price, reservedBy, owner, active);
+        this.tags = new HashSet<>(Arrays.asList(tags));
     }
 
     public Set<String> getTags() {
@@ -26,6 +29,8 @@ public class Picture extends AbstractProduct {
     public boolean hasTags(Set<String> tags) {
         return this.tags.containsAll(tags);
     }
+
+
 
 
 

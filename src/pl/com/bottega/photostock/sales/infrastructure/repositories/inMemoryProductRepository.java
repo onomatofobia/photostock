@@ -12,9 +12,9 @@ public class inMemoryProductRepository implements ProductRepository {
     static  {
         Set<String> tags = new HashSet<>();
         tags.add("kotki");
-        Product p1 = new Picture(1L, Money.valueOf(10), true, tags);
-        Product p2 = new Picture(2L, Money.valueOf(5), true, tags);
-        Product p3 = new Picture(3L, Money.valueOf(15), true, tags);
+        Product p1 = new Picture(1L, tags, Money.valueOf(10));
+        Product p2 = new Picture(2L, tags,  Money.valueOf(5));
+        Product p3 = new Picture(3L, tags, Money.valueOf(15));
         REPO.put(1L, p1);
         REPO.put(2L, p2);
         REPO.put(3L, p3);
@@ -71,6 +71,8 @@ public class inMemoryProductRepository implements ProductRepository {
 
             return true;
         }
+
+
 
 }
 

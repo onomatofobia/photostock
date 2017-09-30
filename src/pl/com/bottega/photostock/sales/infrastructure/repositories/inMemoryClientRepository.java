@@ -10,7 +10,8 @@ public class inMemoryClientRepository implements ClientRepository {
     private static final Map<String, Client> REPO = new HashMap<>();
 
     static  {
-        Client p1 = new VIPClient("zz", new Address("ul. Sielska 11", "Polska", "Lublin", "20-001"));
+        Client p1 = new VIPClient("zz", new Address("ul. Sielska 11", "Polska", "Lublin", "20-001"), ClientStatus.VIP,
+                Money.valueOf(200), Money.valueOf(200));
         Client p2 = new VIPClient("Tomasz Kowalski", new Address("ul. Wiosenna 11", "Polska", "Lublin", "20-001"));
         Client p3 = new VIPClient("Janina Wiśniewska", new Address("ul. Północna 11", "Polska", "Lublin", "20-001"));
         REPO.put(p1.getClientNumber(), p1);

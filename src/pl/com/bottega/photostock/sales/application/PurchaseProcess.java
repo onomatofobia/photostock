@@ -23,6 +23,7 @@ public class PurchaseProcess {
         this.clientRepository = repository;
         this.reservationRepository = reservationRepository;
         this.productRepository = productRepository;
+        this.purchaseRepository = purchaseRepository;
     }
 
     public String createReservation(String clientNumber){
@@ -63,7 +64,7 @@ public class PurchaseProcess {
             }
         }
         else{
-                return PurchaseStatus.OFFER_MISMATCH;
-            }
+            return PurchaseStatus.OFFER_MISMATCH;
+        }
     }
 }

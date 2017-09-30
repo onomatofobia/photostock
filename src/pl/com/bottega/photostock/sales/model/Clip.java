@@ -5,12 +5,12 @@ public class Clip extends AbstractProduct {
 
     private Long length;
 
-    public Clip(Long number, Money price, Boolean active, Long length) {
-        super(number, price, active);
+    public Clip(Money price, Boolean active, Long number, Long length) {
+        super(price, active, number);
         this.length = length;
     }
 
     public Clip(Money price, Long number, Long length) {
-        this(number, price, true, length);
+        this(price, true, number, length);
     }
 }

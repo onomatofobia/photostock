@@ -22,4 +22,12 @@ public interface Product {
         if (!isAvailable())
             throw new ProductNotAvailableException(this);
     }
+
+    public Money getPrice();
+
+    public String getReservedBy();
+
+    public Boolean getActive();
+
+    public String getOwner();
 }

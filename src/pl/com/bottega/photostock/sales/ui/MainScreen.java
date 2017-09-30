@@ -22,9 +22,9 @@ public class MainScreen {
     public void show() {
         menu = new Menu(scanner);
         menu.setTitleLabel("WITAJ W PHOTOSTOCK!");
-        menu.addItem("Wyszukaj produkt", () -> searchScreen.show());
-        menu.addItem("LightbBoxy", () -> lightBoxManagementScreen.show());
-        menu.setLastItemLabel("Zakończ");
+        menu.addItem("Wyszukaj produkt.", () -> searchScreen.show());
+        menu.addItem("LightbBox'y.", () -> lightBoxManagementScreen.show());
+        menu.setLastItemLabel("Zakończ.");
         menu.show();
     }
 }
